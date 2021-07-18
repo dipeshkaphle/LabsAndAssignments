@@ -1,0 +1,441 @@
+
+<!-- saved from url=(0053)https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_4.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="initial-scale=1.0">
+    <script src="CIS%20452_files/jquery.min.js.download"></script>
+	<script src="CIS%20452_files/bootstrap.min.js.download"></script>
+	<link rel="stylesheet" type="text/css" href="CIS%20452_files/bootstrap.min.css">
+    <!--<link href="../../WS19_CIS_452/static/css/bootstrap.min.css" rel="stylesheet">-->
+    <link media="screen" href="CIS%20452_files/custom.css" rel="stylesheet">
+    <link media="print" href="CIS%20452_files/custom_print.css" rel="stylesheet">
+    <title>CIS 452</title>
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.997.0" data-gr-ext-installed="">
+  	<nav class="navbar navbar-default">
+  		<div class="container-fluid">
+  			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			    </button>
+  				<a class="navbar-brand" href="https://cis.gvsu.edu/index.html">
+  					<img id="university-logo" alt="university image" src="CIS%20452_files/gvsu_logo.png">
+  				</a>
+  			</div>
+
+  			<!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="course-information-header">
+				<div class="course-title-header">
+					<a href="http://www.cis.gvsu.edu/~moorejar/WS19_CIS452/">CIS 452 - Operating Systems Concepts Winter 2019</a>
+				</div>
+		    </div><!-- /.navbar-collapse -->
+
+  		</div>
+  	</nav>
+    <div class="container">
+    	<div class="row">
+    		<div class="col-sm-3">
+		    	<nav class="navbar navbar-default" role="navigation">
+				  <div class="navbar-header">
+				    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				      <span class="sr-only">Toggle navigation</span>
+				      <span class="icon-bar"></span>
+				      <span class="icon-bar"></span>
+				      <span class="icon-bar"></span>
+				    </button>
+				  </div>
+
+				  <!-- Collect the nav links, forms, and other content for toggling -->
+				  <div class="collapse navbar-collapse navbar-ex1-collapse">
+				    <ul class="nav navbar-nav">
+				      <li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/syllabus.html">Syllabus</a></li>
+				      <li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/schedule.html">Schedule</a></li>
+				      <li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/linux_command_line_overview.html">Command Line</a></li>
+				      <li class="dropdown">
+				          <a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_4.html#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Assignments <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/assign_1.html">Homework 1: Introduction to OS</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/assign_2.html">Homework 2: Processes</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/assign_3.html">Homework 3: Threads</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/assign_4.html">Homework 4: Synchronization</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/assign_5.html">Homework 5: Process Scheduling</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/assign_6.html">Homework 6: Memory</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/assign_7.html">Homework 7: Paging</a></li>
+				          </ul>
+				      </li>
+				      <li class="dropdown">
+				      	  <a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_4.html#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Labs <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_1.html">Lab #01: Introduction to UNIX and System Development Tools</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_2.html">Lab #02: Process Management Concepts</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_3.html">Lab #03: Interprocess Communication (IPC)</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_4.html">Lab #04: Multi-threaded Programming: pthreads</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_5.html">Lab #05: Managing Shared Memory</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_6.html">Lab #06: Shared Memory Synchronization</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_7.html">Lab #07: System Resource Utilization</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_8.html">Lab #08: Memory Management</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_9.html">Lab #09: Virtual Memory Concepts</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_10.html">Lab #10: Memory Management under Windows</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_11.html">Lab #11: File System Interface</a></li><li><a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_12.html">Lab #12: File System Interface Operations</a></li>
+				          </ul>
+				      </li>
+				      <li class="dropdown">
+				      	  <a href="https://cis.gvsu.edu/~moorejar/WS19_CIS452/lab_4.html#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				            
+				          </ul>
+				      </li>
+				    </ul>
+				  </div><!-- /.navbar-collapse -->
+				</nav>
+			</div>
+  			<div class="col-sm-9">  <div class="row">
+  	<div class="col-sm-12">
+      		<h3 id="lab-4-multi-threaded-programming-pthreads">Lab 4 - Multi-threaded Programming: pthreads</h3>
+<h4 id="overview">Overview</h4>
+<p>The purpose of this lab is to introduce multi-threaded programming: the fundamental mechanisms for thread creation, execution, management, communication and termination.&nbsp; It examines the first essential element of any thread system, execution context (the remaining two elements being scheduling and synchronization).</p>
+<p>The documentation refers to the POSIX <strong>pthreads</strong> API, a standardized run-time library that natively implements threads on Linux. See the online documentation (i.e. <tt>man</tt> pages) for additional details on the syntax and operation of the library calls described in this lab.</p>
+<h4 id="activities">Activities</h4>
+<ul>
+<li>This lab, including the short programming assignment, is intended as a <em>group</em> project.</li>
+<li>Submit your lab report including:<ol>
+<li>your answers to the numbered questions</li>
+<li>source code</li>
+<li>sample output file(s)</li>
+</ol>
+</li>
+<li>Be prepared to demonstrate your program.</li>
+</ul>
+<h4 id="resources">Resources</h4>
+<ul>
+<li>Reference your class notes and the textbook for basic thread programming concepts.</li>
+<li>See the online documentation (<tt>man</tt> pages) for additional details on the syntax and operation of thread management calls.</li>
+</ul>
+<h4 id="thread-creation-and-execution">Thread Creation and Execution</h4>
+<p>A traditional process in a UNIX system is simply a single-threaded program. It has a single thread (or path) of execution, known as the initial thread, that begins by executing <strong><tt>main()</tt></strong>.</p>
+<p>Like processes, all threads (with the exception of the initial one executing <strong><tt>main()</tt></strong>) are spawned from an existing thread. The syntax of the library routine that creates a thread is given below:  </p>
+<p><tt>int pthread_create (pthread_t*
+tid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>// thread id (returned from create routine) <br>
+      <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+const pthread_attr_t* attr,&nbsp;&nbsp;</tt>// optional attributes <br>
+      <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+void* (*start)(void*),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </tt>//
+address of function to execute <br>
+      <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        void* arg);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>// argument passed to thread </p>
+
+<p>This call creates a new thread running the user-defined function named <strong><tt>start</tt></strong>. The <strong><tt>start()</tt></strong> function is passed a single argument <strong><tt>arg</tt></strong>, of type <strong><tt>void*</tt></strong>, and returns a value of the same type. Any optional attributes (e.g. scheduling policy) may be set at creation time. The identifier of the newly created thread is returned in <strong><tt>tid</tt></strong>. After completion of this function call, the newly created thread will begin executing the function <tt>start()</tt>, using the argument(s) pointed to by <tt>arg</tt>. As usual, the return value of the function call is a status indicator; where a non-zero value means the function failed.  </p>
+<p>The sample program below demonstrates simple thread creation. Default values are used for the attributes. The function does not take any arguments. Note the use of error-checking for all function calls.  </p>
+<p><u>Sample Program 1</u> </p>
+<p><tt>#include &lt;pthread.h&gt;</tt> <br>
+  <tt>#include &lt;stdio.h&gt;</tt> <br>
+  <tt>#include &lt;errno.h&gt;</tt> <br>
+  <tt>#include &lt;unistd.h&gt;</tt> <br>
+  <tt>#include &lt;stdlib.h&gt;</tt> <br>
+  <tt>#include &lt;string.h&gt;</tt> </p>
+<p><tt>void* do_greeting (void* arg);</tt> <br>
+  // arguments:&nbsp;&nbsp;&nbsp; arg is an untyped pointer <br>
+  // returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a
+  pointer
+  to whatever was passed in to arg <br>
+  // side effects:&nbsp; prints a greeting message </p>
+<p><tt>int main()</tt> <br>
+  <tt>{</tt> <br>
+  <tt>&nbsp;pthread_t thread1;&nbsp; </tt>// thread ID holder <br>
+  <tt>&nbsp;int
+    status;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </tt>//
+  captures any error code </p>
+<p>// create and start a thread executing the "do_greeting()"
+  function <br>
+  <tt>&nbsp;&nbsp;&nbsp; if ((status = pthread_create (&amp;thread1,
+    NULL,&nbsp; do_greeting, NULL)) != 0) {</tt> <br>
+  <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fprintf (stderr,
+    "thread
+    create error %d: %s\n", status, strerror(status));</tt> <br>
+  <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit (1);</tt> <br>
+  <tt>&nbsp;&nbsp;&nbsp; }</tt> </p>
+<p><tt>&nbsp;&nbsp;&nbsp; return 0;</tt> <br>
+  <tt>}</tt> </p>
+<p><tt>void* do_greeting (void* arg)</tt> <br>
+  <tt>{</tt> <br>
+  <tt>&nbsp;&nbsp;&nbsp; sleep(1);</tt> <br>
+  <tt>&nbsp;&nbsp;&nbsp; printf ("Thread version of Hello,
+    world.\n");</tt>
+  <br>
+  <tt>&nbsp;&nbsp;&nbsp; return arg;</tt> <br>
+  <tt>}</tt> </p>
+
+<p><strong>Try the following operations and answer the numbered questions:</strong></p>
+<ul>
+<li>Start up a Terminal session, which provides you with the UNIX command-line interface.</li>
+<li>Compile and run Sample Program 1. You will need to link in the pthreads library (i.e. you must compile with the <strong><tt>-pthread</tt></strong> compiler option).</li>
+<li>Observe the results</li>
+<li>Try inserting a 2-second <tt>sleep()</tt> into the <tt>main()</tt> function (after thread creation); compile and re-run.</li>
+</ul>
+<ol start="1">
+  <li>Describe/explain your observations, i.e. what must have happened in the original, unmodified program?<br>
+  </li>
+</ol>
+
+<h4 id="thread-suspension-and-termination">Thread Suspension and Termination</h4>
+<p>Similar to UNIX processes, threads have the equivalent of the <tt>wait()</tt>
+and <tt>exit()</tt> system calls, in this case called <tt>join()</tt> and <tt>exit()</tt>. The calls are used to block threads and terminate threads, respectively.  </p>
+<p>To instruct a thread to block while waiting for another thread to complete, use the <strong><tt>pthread_join()</tt></strong> function. This function is also the mechanism used to get a return value from a thread. Note that any thread can join on (and hence wait for) any other thread. The function prototype:  </p>
+<p><tt>&nbsp;&nbsp;&nbsp; int pthread_join (pthread_t thread1, void
+    **value_ptr)</tt> </p>
+
+<p>This function specifies that the calling thread should block and wait for <tt>thread1</tt> to complete execution. The value returned by <tt>thread1</tt> will be accessible via the argument <tt>value_ptr</tt>. In addition to explicitly joining, threads may also use semaphores, conditional waits and other synchronization mechanisms to keep track of when other threads exit.  </p>
+<p>Sometimes parent threads have ongoing work to perform, for example, functioning as a dispatcher. Instead of waiting for a child thread to complete, a parent can specify that it does not require a return value or any explicit synchronization with a child thread. To do this, the parent thread uses the <strong><tt>pthread_detach()</tt></strong> function. A child thread can also specify that it does not need to join with any other threads by detaching itself. After the call to detach, there is no thread waiting for the child - it executes independently until termination. The prototype for this function is as follows:  </p>
+<p><tt>&nbsp;&nbsp;&nbsp; int pthread_detach (pthread_t thread1)</tt>
+</p>
+
+<p>with <tt>thread1</tt> representing the identity of the detached thread.  </p>
+<p>The <strong><tt>pthread_exit()</tt></strong> function causes the calling thread to terminate. Resources are recovered, and a value is returned to the joined thread (if one exists). A thread may explicitly call <tt>pthread_exit()</tt>, or it may simply terminate, usually by returning from its start function. Although it is not strictly enforced that you use either <tt>join()</tt> or <tt>detach()</tt>, it is good practice because non-detached threads which have exited but have not been joined are equivalent to zombie processes (i.e. their resources cannot be fully recovered). Okay, now read that last sentence again, and make a habit of implementing it.</p>
+<p>The sample program below is a functioning multi-threaded program that uses the library functions described above. It may not behave exactly as you might expect.</p>
+<p>Note: for a simple change of pace, the sample program is written in C++ instead of C (just substitute "<strong><tt>g++</tt></strong>" for "<strong><tt>gcc</tt></strong>" as your compiler).  </p>
+<p><u>Sample Program 2</u> </p>
+<p><tt>#include &lt;pthread.h&gt;</tt> <br>
+<tt>#include &lt;iostream&gt;</tt> <br>
+<tt>#include &lt;errno.h&gt;</tt> <br>
+<tt>#include &lt;unistd.h&gt;</tt> <br>
+<tt>#include &lt;stdlib.h&gt;</tt> <br>
+<tt>#include &lt;string.h&gt;<br>
+</tt></p>
+<p><tt>using namespace std;<br>
+</tt> </p>
+<p><tt>void* do_greeting2 (void* arg);</tt> <br>
+// arguments :&nbsp; arg is an untyped pointer <br>
+// returns :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a pointer to
+whatever
+was passed in to arg <br>
+// side effects:&nbsp; prints a greeting </p>
+<p><tt>int main()</tt> <br>
+<tt>{</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; pthread_t thread1, thread2;&nbsp; </tt>//
+thread ID's <br>
+<tt>&nbsp;&nbsp;&nbsp; void *result1,
+  *result2;&nbsp;&nbsp;&nbsp;&nbsp;
+</tt>//
+return values <br>
+<tt>&nbsp;&nbsp;&nbsp; int status;</tt> </p>
+<p>// create and start two threads; both executing the "do_greeting2"
+function <br>
+// pass the threads a pointer to NULL as their argument <br>
+<tt>&nbsp;&nbsp;&nbsp; if ((status = pthread_create (&amp;thread1,
+  NULL,&nbsp; do_greeting2, NULL)) != 0) {</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cerr &lt;&lt;
+  "thread
+  create error: " &lt;&lt; strerror(status) &lt;&lt; endl;</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit (1);</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; }</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; if ((status = pthread_create (&amp;thread2,
+  NULL,&nbsp; do_greeting2, NULL)) != 0) {</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cerr &lt;&lt;
+  "thread
+  create error: " &lt;&lt; strerror(status) &lt;&lt; endl;</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit (1);</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; }</tt> </p>
+<p>// join with the threads (wait for them to terminate);&nbsp; get their return
+vals <br>
+<tt>&nbsp;&nbsp;&nbsp; if ((status = pthread_join (thread1,
+  &amp;result1)) != 0) {</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cerr &lt;&lt; "join
+  error: " &lt;&lt; strerror(status) &lt;&lt; endl;</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit (1);</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; }</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; if ((status = pthread_join (thread2,
+  &amp;result2)) != 0) {</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cerr &lt;&lt; "join
+  error: " &lt;&lt; strerror(status) &lt;&lt; endl;</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit (1);</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; }</tt> </p>
+<p>// threads return what they were passed (i.e. NULL) <br>
+<tt>&nbsp;&nbsp;&nbsp; if (result1 != NULL || result2 != NULL) {</tt>
+<br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cerr &lt;&lt; "bad
+  result"&nbsp; &lt;&lt; endl;</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit (1);</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; }</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; return 0;</tt> <br>
+<tt>}</tt> </p>
+<p><tt>void* do_greeting2 (void* arg)</tt> <br>
+<tt>{</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; int val = rand() % 2;</tt> </p>
+<p>// print out message based on val <br>
+<tt>&nbsp;&nbsp;&nbsp; for (int loop = 0;&nbsp; loop &lt;
+  10;&nbsp;
+  loop++) {</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!val)</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout
+  &lt;&lt; "Hello ";</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cout
+  &lt;&lt; "World\n ";</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; }</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; return arg;</tt> <br>
+<tt>}</tt> </p>
+
+<p><strong>Try the following operations and answer the numbered questions:</strong>  </p>
+<ul>
+<li>Compile and run Sample Program 2.</li>
+</ul>
+<ol start="2">
+  <li> Report your results, particularly the observed formatting.
+  </li>
+</ol>
+
+<ul>
+<li>Insert a one-second <tt>sleep()</tt> at the beginning of the loop in the <tt>do_greeting2()</tt> function. Compile and run the modified program.</li>
+</ul>
+<ol start="3">
+  <li>Report your results again. Explain why they are different from the results seen in question 3.</li>
+</ol>
+
+<ul>
+<li>Run the modified program again. In another terminal window, examine process state via <strong>ps</strong> using <em>appropriately chosen</em> options in order to view a thread display. (Hint: the '<tt>-L</tt>' option provides relevant info, the '<tt>-u &lt;username&gt;</tt>' option will show only your executing code). Similarly, you can view your executing code using the <strong>top</strong> utility (as in '<tt>top -U &lt;username&gt;</tt>'). Using '<tt>H</tt>' in <strong>top</strong> will toggle thread info to report.  </li>
+</ul>
+<ol start="4">
+  <li>Based on your observations: Do pthreads under Linux use the 1-to-1 or the many-to-one thread mapping model? Justify your answer.
+  </li>
+</ol>
+
+
+<h4 id="thread-communication">Thread Communication</h4>
+<p>There are two methods used by threaded programs to communicate. The first method uses shared memory (as described in class). But sometimes it is desirable to communicate thread-specific information to each individual thread. For this purpose, we can use the second method of communication: via the argument value (the <font face="Courier New"><font size="-1">void *</font></font>) passed to a thread's start function. The following sample program
+uses shared memory for communication; it also demonstrates the mechanism of thread-specific arguments to pass each thread unique information. </p>
+<p><u>Sample Program 3</u> </p>
+<p><tt>#include &lt;pthread.h&gt;</tt> <br>
+<tt>#include &lt;stdio.h&gt;</tt> <br>
+<tt>#include &lt;errno.h&gt;</tt> <br>
+<tt>#include &lt;unistd.h&gt;</tt> <br>
+<tt>#include &lt;stdlib.h&gt;</tt> <br>
+<tt>#include &lt;string.h&gt;</tt> </p>
+<p><tt>void* do_greeting3 (void* arg);</tt> <br>
+// arguments :&nbsp; arg is an untyped pointer pointing to a character<br>
+// returns :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a pointer to NULL<br>
+// side effects:&nbsp; prints a greeting </p>
+<p>// global (shared and specific) data <br>
+<tt>int sharedData = 5;</tt> <tt tt="">char val[2] =
+  {'a','b'};</tt>
+</p>
+<p><tt>int main()</tt> <br>
+<tt>{</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; pthread_t
+  thread1, thread2;</tt><tt><br>
+</tt><tt>&nbsp;&nbsp;&nbsp; void
+  *result1, *result2;</tt><tt> </tt><br>
+<tt>&nbsp;&nbsp;&nbsp; int status;</tt>
+</p>
+<p>// create and start two threads executing the "do_greeting3"
+function <br>
+// pass each thread a pointer to its respective argument <br>
+<tt>&nbsp;&nbsp;&nbsp; if ((status = pthread_create (&amp;thread1,
+  NULL,&nbsp; do_greeting3, &amp;val[0])) != 0) {</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fprintf (stderr,
+  "thread
+  create error %d: %s\n", status, strerror(status));</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit (1);</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; }</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; if ((status = pthread_create (&amp;thread2,
+  NULL,&nbsp; do_greeting3, &amp;val[1])) != 0) {</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fprintf (stderr,
+  "thread
+  create error %d: %s\n", status, strerror(status));</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit (1);</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; }</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; printf ("Parent sees %d\n", sharedData);</tt>
+<br>
+<tt>&nbsp;&nbsp;&nbsp; sharedData++;</tt> </p>
+<p>// join with the threads (wait for them to terminate);&nbsp; get their return
+vals <br>
+<tt>&nbsp;&nbsp;&nbsp; if ((status = pthread_join (thread1,
+  &amp;result1)) != 0) {</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fprintf (stderr,
+  "join
+  error %d: %s\n", status, strerror(status));</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit (1);</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; }</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; if ((status = pthread_join (thread2,
+  &amp;result2)) != 0) {</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fprintf (stderr,
+  "join
+  error %d: %s\n", status, strerror(status));</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit (1);</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; }</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; printf ("Parent sees %d\n", sharedData);</tt>
+<br>
+<tt>&nbsp;&nbsp;&nbsp; return 0;</tt> <br>
+<tt>}</tt> </p>
+<p><tt>void* do_greeting3 (void* arg)</tt> <br>
+<tt>{</tt> <br>
+// note the cast of the void pointer to the desired data type <br>
+<tt>&nbsp;&nbsp;&nbsp; char *val_ptr = (char *) arg;</tt> </p>
+<p>// print out a message <br>
+<tt>&nbsp;&nbsp;&nbsp; printf ("Child receiving %c initially sees
+  %d\n",
+  *val_ptr, sharedData);</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; sleep(1);</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; sharedData++;</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; printf ("Child receiving %c now sees %d\n",
+  *val_ptr, sharedData);</tt> <br>
+<tt>&nbsp;&nbsp;&nbsp; return NULL;</tt> <br>
+<tt>}</tt> </p>
+
+<p><strong>Try the following operations and answer the numbered questions:</strong></p>
+<ol start="5">
+  <li> Compile the sample program and run it multiple times (you may see some variation between runs). Choose one particular sample run. Describe, trace, and explain the output of the program.</li>
+  <li>Explain in your own words how the thread-specific (not shared) data is communicated to the child threads. </li>
+</ol>
+
+<h4 id="lab-programming-assignment-blocking-multi-threaded-server-">Lab Programming Assignment (Blocking Multi-threaded Server)</h4>
+<p>Recall the class discussion of a multi-threaded webserver but now consider it as a generic fileserver, in which a Dispatch thread receives a file access request from a client, dispatches a Worker thread to satisfy the request, and resumes accepting new requests from other clients. The worker threads proceed to service their assigned request (potentially blocking while waiting for the disk).</p>
+<p>This mini-programming assignment simulates the thread execution manifested by a multi-threaded fileserver process.  </p>
+<p>Develop a multi-threaded program with the following specifications:</p>
+<p>The Dispatch thread should:</p>
+<ul>
+<li>Input a string from the user (simulating the name of a file to access)</li>
+<li>Spawn a child thread and communicate to it the filename requested/entered by the user</li>
+<li><em>Immediately</em> repeat the input/spawn sequence (i.e. accept a new file request)</li>
+</ul>
+<p>Each Worker thread should:</p>
+<ul>
+<li>Obtain the simulated filename from the dispatcher</li>
+<li>Sleep for a certain amount of time, simulating the time spent performing a file access:<ul>
+<li>With 80% probability, sleep for 1 second. This simulates the scenario that the Worker thread has found the desired file in the disk cache and serves it up quickly.</li>
+<li>With 20% probability, sleep for 7-10 seconds (randomly). This simulates the scenario that the worker thread has <strong>not</strong> found the requested file in the disk cache and must block while it is read in from the hard drive.</li>
+</ul>
+</li>
+<li>Wake up, print a diagnostic message that includes the name of the file accessed, terminate</li>
+</ul>
+<p>It's ok if the resulting display looks somewhat "messy"; that shows that true concurrency is occurring.  </p>
+<p>Your program should continue to execute until terminated by the user (^C). At that point, your program should print out basic statistics:</p>
+<ul>
+<li>Total number of file requests received/serviced</li>
+</ul>
+<p>When terminated, your program should cleanup as appropriate and shutdown gracefully.  </p>
+<p>In addition to being correct, your program should be efficient and should execute in parallel.  </p>
+<p><strong>Remember</strong>: threads share data by definition -- as a rule, all multi-threaded programs should be carefully scrutinized for potential race conditions or "data clobbering".  </p>
+<p>Note: The threads in this assignment mostly sleep (simulating blocking I/O).  However, you may at some point write a more computationally intense program and want to "watch" your threads executing. The eos environment provides a graphical tool called "<tt>mate-system-monitor</tt>". Make sure the
+"Resources" tab is selected. The top graph displays CPU activity on all CPU cores (recall that Linux sees Intel hyperthreading as two cores, so a quad-core system reports 8 CPUs). If your threads are sufficiently busy and correctly concurrent, you should see them occupying and executing on multiple cores.</p>
+<h4 id="extra-credit">Extra Credit</h4>
+<ul>
+<li>Upon termination of your multi-threaded server, report the average file access time</li>
+<li>Concurrent access to a data object, known as a race condition, might occur or look into the "<tt>counter++</tt>" problem. To correctly accumulate the individual thread service time values, you will need to ensure that the summation operation is exclusive (i.e. one addition at a time), so that concurrently executing threads do not overwrite each other.</li>
+<li>Hint: this mechanism is called "mutual exclusion". The object needed to implement it is called a "mutex".</li>
+</ul>
+
+    </div>
+  </div>
+	</div><!-- container -->
+  
+	<div class="container text-center">
+		<hr>
+		<div class="row">
+			<div class="col-sm-3">
+		        <ul class="nav nav-pills nav-justified">
+		            <li><a href="https://cis.gvsu.edu/">© 2016 Jared Moore</a></li>
+		        </ul>
+		    </div>
+			<div class="col-sm-3">
+			    <ul class="nav nav-pills nav-stacked">
+			      <li><a href="http://www.jaredmmoore.com/">About Me</a></li>
+			    </ul>
+			</div>
+		    <div class="col-sm-3">
+		        <ul class="nav nav-pills nav-justified">
+		            <li><a href="https://github.com/jaredmoore/Default_Course_Tempalte">Github Repository</a></li>
+		        </ul>
+		    </div>
+		</div>
+	</div>
+
+</div></div><iframe frameborder="0" scrolling="no" style="background-color: transparent; border: 0px; display: none;" src="CIS%20452_files/saved_resource.html"></iframe><div id="GOOGLE_INPUT_CHEXT_FLAG" input="" input_stat="{&quot;tlang&quot;:true,&quot;tsbc&quot;:true,&quot;pun&quot;:true,&quot;mk&quot;:true,&quot;ss&quot;:true}" style="display: none;"></div></body></html>

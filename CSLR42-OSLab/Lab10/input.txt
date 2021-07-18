@@ -1,0 +1,5 @@
+12
+
+20 Allocated 20 Free 40 Allocated 60 Free 20 Allocated 10 Free 40 Allocated 60 Free 20 Allocated 30 Free 40 Allocated 40 Free
+
+40 20 10

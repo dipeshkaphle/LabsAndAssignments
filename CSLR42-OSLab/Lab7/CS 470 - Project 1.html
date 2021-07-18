@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0061)https://w3.cs.jmu.edu/lam2mo/cs470_2016_01/pa01-pthreads.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css" href="CS%20470%20-%20Project%201_files/style.css">
+<style type="text/css">
+    #ol { font-weight: bold }
+    #ul { font-weight: normal }
+    li { padding: 10px }
+    li.menu { padding: 0px }
+    li.compact { padding: 2px }
+</style>
+<title>CS 470 - Project 1</title>
+</head>
+<body data-new-gr-c-s-check-loaded="14.997.0" data-gr-ext-installed="">
+
+<div id="wrap">
+
+<div id="header">
+<h1>CS 470</h1>
+<h2>Parallel and Distributed Systems - Spring 2016</h2>
+</div>
+
+<div id="menu">
+<ul class="menu">
+<li class="menu"><a href="https://w3.cs.jmu.edu/lam2mo/cs470_2016_01/index.html">Home</a></li>
+<li class="menu"><a href="https://w3.cs.jmu.edu/lam2mo/cs470_2016_01/syllabus.html">Syllabus</a></li>
+<li class="menu"><a href="https://w3.cs.jmu.edu/lam2mo/cs470_2016_01/calendar.html">Calendar</a></li>
+<li class="menu"><a href="https://w3.cs.jmu.edu/lam2mo/cs470_2016_01/assignments.html">Assignments</a></li>
+<li class="menu"><a href="https://w3.cs.jmu.edu/lam2mo/cs470_2016_01/resources.html">Resources</a></li>
+</ul>
+
+</div>
+
+<div id="contentwrap"> 
+
+<div id="content">
+
+<!--<img style="float: right; padding: 0 0 0 0;" src="images/img.png" alt="Image" />-->
+
+<h2>Project 1 - Pthread Application</h2>
+
+<p>
+
+</p><h3>Introduction</h3>
+
+<p> The primary purpose of this assignment is to gain experience with multicore
+parallelism using the standard POSIX Pthreads library, including exposure to
+multithreading concepts such as mutexes and conditions. The secondary purpose
+of this assignment is to gain experience implementing a <em>master/worker task
+queue</em> model of parallel computation. </p>
+
+<h3>Description</h3>
+
+<p> You will develop a parallel version of the following serial program:
+<code><a href="https://w3.cs.jmu.edu/lam2mo/cs470_2016_01/files/sum.c">sum.c</a></code> </p>
+
+<p> The program reads a list of "tasks" from a file. Each task consists of a
+character code indicating an action and a number. The character code can be
+either a "p" (for "process") or "w" (for "wait"). The input file simulates
+various workloads entering a multiprocessing system. In a real system, the "p"
+actions (the tasks) would likely be calls to computational routines. For our
+purposes, "processing" a task with number <em>n</em> just means waiting
+<em>n</em> seconds using the <code>sleep</code> function and then updating a few
+global aggregate variables (sum, odd count, min, and max). The "w" action
+provides a way to simulate a pause in incoming tasks. </p>
+
+<p> For example, the following script simulates one initial one-second task
+entering the system, followed by a two-second delay. After the delay, a
+two-second task enters the system followed by a three-second task. </p>
+
+<pre>p 1
+w 2
+p 2
+p 3
+</pre>
+
+<p> Using a purely serial processing system (as implemented in the provided
+<code>sum.c</code>), the above scenario will take eight seconds to finish: </p>
+
+<pre>t=0    t=1    t=2    t=3    t=4    t=5    t=6    t=7    t=8
+|      |      |      |      |      |      |      |      |
+---------------------------------------------------------
+| p 1  | w 2         | p 2          | p 3               |       serial version
+---------------------------------------------------------
+</pre>
+
+<p> The final output should match the following (sum, # odd, min, max): </p>
+
+<pre>6 2 1 3
+</pre>
+
+<p> In this project you will extend this program to take advantage of a
+multicore CPU using a <em>task queue</em> model. In such a model, the main
+program spawns a set number of worker threads. <span style="color:red"> You
+should read the number of threads from the command line as a new second
+parameter. </span> The main program and worker threads communicate using a
+<em>task queue</em> to keep track of tasks that still need to be processed. </p>
+
+<p> Observe that if we allowed the first task to be processed during the wait,
+we could reduce the time by a single second: </p>
+
+<pre>t=0    t=1    t=2    t=3    t=4    t=5    t=6    t=7
+|      |      |      |      |      |      |      |
+--------------------------------------------------
+| w 2         | idle                             |      master
+--------------------------------------------------
+| p 1  | idle | p 2         | p 3                |      single worker
+--------------------------------------------------
+</pre>
+
+<p> This can be achieved by splitting the actual processing work out into a
+<em>worker</em> thread that can work parallel to the original <em>master</em>
+thread. This allows the master thread to focus on receiving jobs while the
+worker thread focuses on doing the actual work. In the above scenario, the first
+task arrives at t=0 while the second two tasks arrive simultaneously at t=2.
+</p>
+
+<p> Because our tasks are independent, the situation can be further improved by
+the addition of more worker threads, assuming we have enough physical CPU cores
+to take advantage of them. In the example above, the last two tasks could be
+executed simultaneously to save two additional seconds: </p>
+
+<pre>t=0    t=1    t=2    t=3    t=4    t=5
+|      |      |      |      |      |
+------------------------------------
+| w 2         | idle               |    master
+------------------------------------
+| p 1  | idle | p 2         | idle |    worker 1
+------------------------------------
+| idle        | p 3                |    worker 2
+------------------------------------
+</pre>
+
+<p> Your program should work as follows. At the beginning of execution, the
+master thread spawns a set number of worker threads (given by a command line
+parameter). The worker threads are idle at first. Once the workers have been
+fully initialized, the master then begins to handle tasks from the input file by
+adding them to a task queue, waking up an idle worker thread (if there are any)
+for each task. When a thread is awakened, they begin to pull tasks from the
+queue and process them. If the queue ever runs out of tasks, the worker should
+block again until awakened by the master. If the master encounters a "w" (wait)
+command, it waits the given number of seconds before continuing in the input
+file. After all tasks have been added to the queue, the master waits for the
+queue to be exhausted, waking idle threads as necessary to help. When the queue
+is empty, the master waits for non-idle workers to finish, then sets a global
+flag to indicate that the entire program is done, re-awakening all worker
+threads so that they can terminate.  The master then cleans everything up and
+exits. </p>
+
+<p> To implement the above system, you should use Pthread threads, mutexes, and
+conditions as covered in class and in the textbook. Your program should take the
+number of worker threads as a second command-line parameter; the performance on
+parallelizeable work loads should scale linearly with the number of threads. You
+should use at least one mutex (although you will probably need more than one)
+and at least one condition. You must also keep an explicit task queue data
+structure. </p>
+
+<p> <strong><span style="color:red"> You MAY NOT use semaphores for this
+        assignment. </span></strong> While there may be a solution to this
+problem using semaphores, one of the main goals of this project is to gain
+experience using mutexes and conditions. </p>
+
+<p> Hints: </p>
+
+<ul>
+    <li class="compact">Add a new worker thread function for most of your worker-side synchronization. </li>
+    <li class="compact">Implement the task queue as a singly-linked list. </li>
+    <li class="compact">Use a mutex to protect the global aggregate variables. </li>
+    <li class="compact">Use a mutex to protect the task queue. </li>
+    <li class="compact">Use a condition to block and wake worker threads, and consider using its associated mutex to protect an "idle thread" counter. </li>
+    <li class="compact">Declare variables that you don't want the compiler to optimize using the
+        <code><a href="https://en.wikipedia.org/wiki/Volatile_%28computer_programming%29">volatile</a></code> keyword.</li>
+    <li class="compact">Don't forget do/while loops! </li>
+    <li class="compact">It's ok for the master thread to busy-wait. </li>
+    <li class="compact">Compile with <code>-O0</code> to debug, then switch to <code>-O2</code> after you're sure the basics are working. </li>
+    <li class="compact">Create several test input files and a script to automatically run (and time) all of them. </li>
+    <li class="compact">Try removing the call to "sleep" in the update function to compress the work times and check for race conditions. </li>
+    <li class="compact">Don't over-engineer! My reference solution adds fewer than 200 total lines. </li>
+</ul>
+
+<h3> Grading Criteria </h3>
+
+<p> Your submission will be graded on a combination of correctness,
+functionality, elegance, style, and documentation. Here is a tentative grading
+rubric: </p>
+
+<div style="display: table; margin: 0 auto">
+<table>
+    <tbody><tr>
+        <th>Grade</th>
+        <th>Description</th>
+        <th>Requirements</th>
+    </tr>
+    <tr>
+        <td>A</td>
+        <td>Exceptional</td>
+        <td>
+            <ul>
+                <li class="compact">Linear speedup with multiple worker threads.</li>
+                <li class="compact">Consistently optimal running times.</li>
+                <li class="compact">Correct results on all test cases at all optimization levels.</li>
+                <li class="compact">Correct use of all Pthread constructs.</li>
+                <li class="compact">Lack of any potential data races.</li>
+                <li class="compact">Clean code with fully consistent style.</li>
+                <li class="compact">Insightful documentation.</li>
+                <li class="compact">All of the below.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>B</td>
+        <td>Good</td>
+        <td>
+            <ul>
+                <li class="compact">Speedup with multiple worker threads.</li>
+                <li class="compact">Terminates on all test cases at all optimization levels.</li>
+                <li class="compact">Correct implementation of a task queue.</li>
+                <li class="compact">Correct use of multiple Pthread mutexes.</li>
+                <li class="compact">Correct use of Pthread condition.</li>
+                <li class="compact">Consistent and reasonable style.</li>
+                <li class="compact">No memory leaks.</li>
+                <li class="compact">Useful and consistent documentation.</li>
+                <li class="compact">All of the below.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>C</td>
+        <td>Satisfactory</td>
+        <td>
+            <ul>
+                <li class="compact">Compiles without needing modifications.</li>
+                <li class="compact">Correct results with a single worker thread.</li>
+                <li class="compact">Correct use of at least one Pthread mutex.</li>
+                <li class="compact">Use of at least one Pthread condition.</li>
+                <li class="compact">Does not use semaphores.</li>
+                <li class="compact">Readable style.</li>
+                <li class="compact">Minimal amount of documentation.</li>
+                <li class="compact">All of the below.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>D</td>
+        <td>Deficient</td>
+        <td>
+            <ul>
+                <li class="compact">Some evidence of a good-faith attempt.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>F</td>
+        <td>Unacceptable</td>
+        <td> </td>
+    </tr>
+</tbody></table>
+</div>
+
+<h3> Submission </h3>
+
+<p> You should copy <code>sum.c</code> into a new file called
+<code>par_sum.c</code> and modify it to implement the master/worker system
+described above. Your modified program should accept TWO command-line parameters
+instead of one: 1) the input filename and 2) the number of worker threads. Your
+program must compile on POSIX-compliant systems using the following
+Makefile: </p>
+
+<pre>default: sum par_sum
+
+sum: sum.c
+	gcc -g -O2 --std=c99 -Wall -o sum sum.c
+
+par_sum: par_sum.c
+	gcc -g -O2 --std=c99 -Wall -o par_sum par_sum.c -lpthread
+
+clean:
+	rm -f sum par_sum
+</pre>
+
+<p> You should submit your modified program as <code>par_sum.c</code> on Canvas
+by the due date. You should not submit your Makefile or anything else. </p>
+
+<p> All submitted code should be elegant, clean, consistent, and
+well-documented. The code I have provided uses 4-space indentation and the <a href="https://en.wikipedia.org/wiki/Indent_style#Variant:_1TBS">1TBS</a> style.
+If you choose to reformat the file to match your own style preferences, make
+sure you apply the changes throughout. </p>
+
+<h3> Peer Reviews </h3>
+
+<p> One of the goals of this course is to encourage good software development
+practices, especially when building a parallel or distributed software system.
+For this project, you will be assigned two other random students in the course.
+You must review their code and offer constructive feedback according to the
+given <a href="https://w3.cs.jmu.edu/lam2mo/cs470_2016_01/files/code_reviews.pdf">rubric</a>. </p>
+
+<p> After the submission deadline, I will assign you two other submissions to
+review on Canvas. I expect you to review two distinct submissions that are not
+your own; I will do my best to ensure that the assignments work out but
+sometimes Canvas does not cooperate. It is your responsibility to inform me
+immediately if you have been assigned yourself, your partner, or two other
+same-team partners to review. </p>
+
+<p> To complete the peer review, submit a Canvas comment on the submission with
+your assessment of the submission according to the <a href="https://w3.cs.jmu.edu/lam2mo/cs470_2016_01/files/code_reviews.pdf">provided code review guidelines</a>. I expect at
+least two paragraphs per review with detailed observations and an assigned
+overall numeric score. You will be graded on the quality, thoroughness, and professional
+tone of your review. The peer reviews are due one week after the original
+project due date. </p>
+
+</div>
+
+<div style="clear: both;"> </div>
+
+</div>
+
+<div id="footer">
+<p>
+Copyright © 2016 Mike Lam | Design by <a href="http://www.blogliber.com/">Blog Liber</a>
+<a href="http://validator.w3.org/check?uri=referer">
+<img style="margin: 0 0 -3px 10px;" src="CS%20470%20-%20Project%201_files/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="15" width="50">
+</a>
+</p>
+</div>
+
+</div>
+
+
+
+<iframe frameborder="0" scrolling="no" style="background-color: transparent; border: 0px; display: none;" src="CS%20470%20-%20Project%201_files/saved_resource.html"></iframe><div id="GOOGLE_INPUT_CHEXT_FLAG" input="" input_stat="{&quot;tlang&quot;:true,&quot;tsbc&quot;:true,&quot;pun&quot;:true,&quot;mk&quot;:true,&quot;ss&quot;:true}" style="display: none;"></div></body></html>
