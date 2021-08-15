@@ -1,5 +1,6 @@
 #include <arpa/inet.h>
 #include <iostream>
+#include <math.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <stdio.h>
@@ -98,14 +99,16 @@ int main(int argc, char **argv) {
   }
   print_conn_name(conn1, &addr1);
   // I only want one character so the buffer size is 1 here
-  status = recv(conn1, buf, 1, 0);
+  status = recv(conn1, buf, sizeof(double), 0);
   HANDLE_SEND_RECV_ERRORS(status);
-  buf[1] = '\0';
-  printf("Received : %s\n", buf);
+  printf("Received : %f\n", *(double *)buf);
   close(conn1);
 
   // second client
   struct sockaddr_storage addr2;
+  double received = *(double *)buf;
+  received = pow(received, 1.5);
+  *(double *)buf = received;
   int conn2 = accept(sock_fd, (struct sockaddr *)&addr2, &len);
   if (conn2 == -1) {
     printf("error in accepting connection 2\n");
@@ -114,9 +117,9 @@ int main(int argc, char **argv) {
   // changing the buffer , decrementing the letter received
   print_conn_name(conn2, &addr2);
   buf[0]--;
-  status = send(conn2, buf, strlen(buf), 0);
+  status = send(conn2, buf, sizeof(double), 0);
   HANDLE_SEND_RECV_ERRORS(status);
-  printf("Sent: %s\n", buf);
+  printf("Sent: %f\n", *(double *)buf);
   close(conn2);
 
   freeaddrinfo(result);

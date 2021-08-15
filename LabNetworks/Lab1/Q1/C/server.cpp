@@ -1,10 +1,12 @@
 #include <arpa/inet.h>
 #include <iostream>
+#include <math.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <string>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -12,6 +14,23 @@
 using namespace std;
 
 const int BUF_SIZE = 512;
+
+struct __attribute__((packed)) _data {
+  char c;
+  uint32_t x;
+  double y;
+  _data(char _c, uint32_t _x, double _y) : c(_c), x(_x), y(_y) {}
+  string str() {
+    return string("data( ") + c + " , " + to_string(x) + " , " + to_string(y) +
+           " )";
+  }
+};
+
+// handles byte ordering
+// network to host=> ntoh
+// host to network => hton
+_data hton(_data other) { return _data(other.c, htonl(other.x), other.y); }
+_data ntoh(_data other) { return _data(other.c, ntohl(other.x), other.y); }
 
 #define HANDLE_SEND_RECV_ERRORS(st)                                            \
   if ((st) == -1) {                                                            \
@@ -48,8 +67,7 @@ void print_conn_name(int fd, const sockaddr_storage *addr) {
 int main(int argc, char **argv) {
   struct addrinfo hints, *result;
   const char *port_no = "3000";
-  char buf[BUF_SIZE];
-  memset(buf, 0, sizeof(buf));
+  _data buf('c', 12345, 123.45);
   // stores status of various syscalls
   int status;
 
@@ -98,14 +116,17 @@ int main(int argc, char **argv) {
   }
   print_conn_name(conn1, &addr1);
   // I only want one character so the buffer size is 1 here
-  status = recv(conn1, buf, 1, 0);
+  status = recv(conn1, &buf, sizeof(_data), 0);
   HANDLE_SEND_RECV_ERRORS(status);
-  buf[1] = '\0';
-  printf("Received : %s\n", buf);
+  buf = ntoh(buf);
+  printf("Received : %s\n", buf.str().c_str());
   close(conn1);
 
   // second client
   struct sockaddr_storage addr2;
+  buf.c++;
+  buf.x += 100;
+  buf.y *= 10;
   int conn2 = accept(sock_fd, (struct sockaddr *)&addr2, &len);
   if (conn2 == -1) {
     printf("error in accepting connection 2\n");
@@ -113,10 +134,11 @@ int main(int argc, char **argv) {
   }
   // changing the buffer , decrementing the letter received
   print_conn_name(conn2, &addr2);
-  buf[0]--;
-  status = send(conn2, buf, strlen(buf), 0);
+  buf = hton(buf);
+  status = send(conn2, &buf, sizeof(_data), 0);
   HANDLE_SEND_RECV_ERRORS(status);
-  printf("Sent: %s\n", buf);
+  buf = ntoh(buf);
+  printf("Sent: %s\n", buf.str().c_str());
   close(conn2);
 
   freeaddrinfo(result);
