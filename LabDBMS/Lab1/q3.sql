@@ -103,7 +103,7 @@ where temp2.to_chennai_trip_cnt > 1;
 --------------------------------------------------------------
 select sum(tmp2.amount) from (select * from (
     select trip_id from trip 
-    where trip.ssn = 1) as tmp inner join salerep_expense
+    where trip.ssn = 1000) as tmp inner join salerep_expense
     on tmp.trip_id = salerep_expense.trip_id) as tmp2;
 
 --------------------------------------------------------------
