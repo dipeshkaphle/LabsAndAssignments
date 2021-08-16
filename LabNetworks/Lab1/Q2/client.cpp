@@ -71,7 +71,7 @@ void handle(int sock, int queryno) {
     char partname[BUFSIZE];
     recv_str(sock, partname);
 
-    printf("%s\n", partname);
+    printf("%s\n\n", partname);
   } else if (queryno == 2) {
     int partno;
     printf("Enter the part no: ");
@@ -80,7 +80,7 @@ void handle(int sock, int queryno) {
     send_int(sock, partno);
     int qty = recv_int(sock);
 
-    printf("QUantity: %d\n", qty);
+    printf("Quantity: %d\n\n", qty);
   } else if (queryno == 3) {
     int custid, partno, qty;
 
@@ -100,7 +100,7 @@ void handle(int sock, int queryno) {
     char status[BUFSIZE];
     recv_str(sock, status);
 
-    printf("Status: %s\n", status);
+    printf("Status: %s\n\n", status);
   } else if (queryno == 4) {
     int partno;
     printf("Enter the part no: ");
@@ -116,7 +116,7 @@ void handle(int sock, int queryno) {
       recv_str(sock, response);
       printf("%s, ", response);
     }
-    printf("\n");
+    printf("\n\n");
   } else if (queryno == 5) {
     char partname[BUFSIZE];
 
@@ -127,9 +127,9 @@ void handle(int sock, int queryno) {
     int partno = recv_int(sock);
 
     if (partno == -1)
-      printf("Does not exist\n");
+      printf("Does not exist\n\n");
     else
-      printf("Part no: %d\n", partno);
+      printf("Part no: %d\n\n", partno);
   }
 }
 

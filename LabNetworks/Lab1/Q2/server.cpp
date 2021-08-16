@@ -11,6 +11,14 @@
 #include <unistd.h>
 using namespace std;
 
+#define MAXPENDING 5 /* Maximum outstanding connection requests */
+#define NAMESIZE 10
+#define DESCSIZE 10
+#define BUFSIZE 30
+#define PARTSSIZE 5
+#define CUSTSIZE 5
+#define SUBPARTSSIZE 2
+
 #define HANDLE_SEND_RECV_ERRORS(st)                                            \
   if ((st) == -1) {                                                            \
     perror("Error in send()/recv()");                                          \
@@ -20,35 +28,27 @@ using namespace std;
     exit(255);                                                                 \
   }
 
-#define MAXPENDING 5 /* Maximum outstanding connection requests */
-#define NAMESIZE 10
-#define DESCSIZE 10
-#define BUFSIZE 30
-#define PARTSSIZE 5
-#define CUSTSIZE 5
-#define SUBPARTSSIZE 2
-
-typedef struct part_t {
+typedef struct {
   int number;
   char name[NAMESIZE];
   int price;
   char desc[DESCSIZE];
   int qty;
   int subparts[SUBPARTSSIZE];
-} part;
+} part_t;
 
-typedef struct order_t {
+typedef struct {
   int partno;
   int qty;
-} order;
+} order_t;
 
-typedef struct customer_t {
+typedef struct {
   int acno;
-  order ord;
-} customer;
+  order_t ord;
+} customer_t;
 
-part parts[PARTSSIZE];
-customer customers[CUSTSIZE];
+part_t parts[PARTSSIZE];
+customer_t customers[CUSTSIZE];
 
 void populate() {
   // 0 - wheel
