@@ -36,7 +36,7 @@ void hton_arr(int *arr, int n) {
   transform(arr, arr + n, arr, [](int x) { return (int)htonl(x); });
 }
 
-void populate(int *buf, int *buf2) {
+void populate(int *buf, int *buf2, bool make_wrong = false) {
   int num = 2;
   for (int i = 1; i * sizeof(int) <= BUF_SIZE; i++) {
     buf[i - 1] = num;
@@ -46,7 +46,10 @@ void populate(int *buf, int *buf2) {
     buf2[i - 1] = num;
     num += 2;
   }
+  if (make_wrong)
+    buf2[0] = 1;
 }
+
 void print_nums(int *buf, int *buf2) {
   printf("Buf1: ");
   for (int i = 1; (i * sizeof(int)) <= BUF_SIZE; i++) {
@@ -63,7 +66,12 @@ void print_nums(int *buf, int *buf2) {
 int main(int argc, char **argv) {
   char buf[BUF_SIZE];
   char buf2[BUF_SIZE];
-  populate((int *)buf, (int *)buf2);
+  bool make_wrong = false;
+  if (argc >= 3) {
+    if (string(argv[2]) == string("wrong"))
+      make_wrong = true;
+  }
+  populate((int *)buf, (int *)buf2, make_wrong);
   print_nums((int *)buf, (int *)buf2);
   int sz = BUF_SIZE / sizeof(int);
   hton_arr((int *)buf, sz);
