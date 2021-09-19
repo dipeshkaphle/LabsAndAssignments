@@ -11,6 +11,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+// HIi
+
 void HANDLE_SEND_RECV_ERRORS(int st) {
   if (st == -1) {
     perror("Error in send()/recv()");

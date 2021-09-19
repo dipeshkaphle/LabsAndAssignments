@@ -254,7 +254,7 @@ select HODName from Department where Deptname = 'CSE';
 ------------------------------------------------------------------------------
 -- 2.6
 
--- 5.Display the HOD name of the CSE department
+-- 6.Display the student rollnos of the CSE department
 ------------------------------------------------------------------------------
 
 select studdep.rollno, Department.deptname from Department inner join studdep
