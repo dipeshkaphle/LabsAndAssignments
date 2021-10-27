@@ -57,25 +57,6 @@ class NS:
                              (packet_dropped)/packet_sent))
         fp.close()
 
-    def pdr(self, src_nodes: List[int], dest_nodes: List[int], file_out: str = "pdr_out.txt"):
-        fp = open(file_out, "w")
-        packet_recvd = 0
-        packet_sent = 0
-        current_time = 0
-        last_time = 0
-        for line in self.get_lines():
-            current_time = line.time
-            if(line.event == "r" and line.to_node in dest_nodes):
-                packet_recvd += 1
-            if(line.event == "+" and line.from_node in src_nodes):
-                packet_sent += 1
-            if(current_time-last_time >= self.interval):
-                last_time += self.interval
-                if(packet_sent > 0):
-                    fp.write("{} {}\n".format(
-                        last_time, (packet_recvd)/packet_sent))
-        fp.close()
-
     def end_to_end_delay(self, src_nodes: List[int], dest_nodes: List[int], file_out: str = "e2e_delay.txt"):
         fp = open(file_out, "w")
         current_time = 0
