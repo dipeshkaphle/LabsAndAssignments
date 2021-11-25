@@ -117,6 +117,7 @@ class NS:
                 last_time += self.interval
                 fp.write("{} {}\n".format(
                     last_time, (8*recv_size)/(10**6 * last_time)))
+        print((8*recv_size)/(10**6 * last_time))
         fp.close()
 
     def bandwith_util(self, src: int, dest: int, bandwith: float,  out_file: str = "bandwithutil_out.txt"):
