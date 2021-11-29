@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<textbooks>
+<textbook>
+    <title>Database system concepts</title>
+    <authors>
+      <author>
+        <firstName>Abraham</firstName>
+        <lastName>Silberschatz</lastName>
+      </author>
+      <author>
+        <firstName>Henry</firstName>
+        <lastName>Korth</lastName>
+      </author>
+      <author>
+        <firstName>S</firstName>
+        <lastName>Sudarshan</lastName>
+      </author>
+    </authors>
+    <publisher>
+      <name>McGraw Hill</name>
+      <website>www.mheducation.com</website>
+    </publisher>
+    <Year-of-Publication>2010</Year-of-Publication>
+    <ISBN>978-0-07-352332-3</ISBN>
+    <book-specific-website>www.db-book.com/db6/</book-specific-website>
+    <edition>6</edition>
+    <cover-type>Paperback</cover-type>
+</textbook>
+<textbook>
+	<title>Computer Networks</title>
+    <authors>
+      <author>
+        <firstName>Andrew</firstName>
+        <lastName>Tanenbaum</lastName>
+      </author>
+      <author>
+        <firstName>David</firstName>
+        <lastName>Wetherall</lastName>
+      </author>
+    </authors>
+    <publisher>
+      <name>Prentice Hall</name>
+      <website>www.pearson.com</website>
+    </publisher>
+    <Year-of-Publication>2018</Year-of-Publication>
+    <ISBN>978-0-13-212695-3</ISBN>
+    <book-specific-website>www.pearson.com/us/higher-education/program/Tanenbaum-Computer-Networks-5th-Edition/PGM270019.html</book-specific-website>
+    <edition>5</edition>
+    <cover-type>Hardcover</cover-type>
+</textbook>
+<textbook>
+	<title>Artificial Intelligence A Modern Approach</title>
+    <authors>
+      <author>
+        <firstName>Peter</firstName>
+        <lastName>Norvig</lastName>
+      </author>
+      <author>
+        <firstName>Stuart</firstName>
+        <lastName>Russel</lastName>
+      </author>
+    </authors>
+    <publisher>
+      <name>Prentice Hall</name>
+      <website>www.pearson.com</website>
+    </publisher>
+    <Year-of-Publication>2010</Year-of-Publication>
+    <ISBN>978-0-13-604259-4</ISBN>
+    <book-specific-website>http://aima.cs.berkeley.edu/</book-specific-website>
+    <edition>4</edition>
+    <cover-type>Hardcover</cover-type>
+</textbook>
+<textbook>
+	<title>Computer Architecture</title>
+    <authors>
+      <author>
+        <firstName>David</firstName>
+        <lastName>Patterson</lastName>
+      </author>
+      <author>
+        <firstName>John</firstName>
+        <lastName>Hennessy</lastName>
+      </author>
+    </authors>
+    <publisher>
+      <name>Morgan Kaufmann</name>
+      <website>www.elsevier.com/books-and-journals/morgan-kaufmann</website>
+    </publisher>
+    <Year-of-Publication>2019</Year-of-Publication>
+    <ISBN>978-0-12-811905-1</ISBN>
+    <book-specific-website>www.elsevier.com/books/computer-architecture/hennessy/978-0-12-811905-1</book-specific-website>
+    <edition>6</edition>
+    <cover-type>Paperback</cover-type>
+</textbook>
+</textbooks>

@@ -47,12 +47,13 @@ create table if not exists salerep_expense(
 -- Filling salesperson db
 insert into salesperson values(1,'Dipesh',2020,1);
 insert into salesperson values(2,'Ram',2021,2);
-insert into salesperson values(3,'Shyam',2019,3);
+insert into salesperson values(1000,'Shyam',2019,3);
 
 -- Filling trip db
 insert into trip values(1,'Kathmandu','Trichy','2019-07-22','2019-07-30',1);
 insert into trip values(2,'Trichy','Chennai','2019-12-30','2020-12-31',2);
-insert into trip values(3,'Pune','Chennai','2020-12-30','2021-01-02',3);
+insert into trip values(2,'Trichy','Chennai','2019-12-30','2020-12-31',4);
+insert into trip values(1000,'Pune','Chennai','2020-12-30','2021-01-02',3);
 
 -- Filling salerep_expense db
 insert into salerep_expense values(1,'TRAVEL',5000);
@@ -63,6 +64,8 @@ insert into salerep_expense values(2,'FOOD',300);
 insert into salerep_expense values(3,'TRAVEL',800);
 insert into salerep_expense values(3,'FOOD',300);
 insert into salerep_expense values(3,'STAY',1000);
+insert into salerep_expense values(4,'TRAVEL',1200);
+insert into salerep_expense values(4,'FOOD',300);
 
 
 
@@ -72,14 +75,22 @@ insert into salerep_expense values(3,'STAY',1000);
 -- 1. Give the details (all attributes of trip relation) for trips that
 -- exceed Rs2000.
 --------------------------------------------------------------
-select * from (
-    select trip.* , sum(salerep_expense.amount) as cost 
+-- select * from (
+--     select trip.* , sum(salerep_expense.amount) as cost 
+--     from trip inner join salerep_expense
+--     on
+--         trip.trip_id = salerep_expense.trip_id
+--     group by trip.trip_id) as temp 
+-- where temp.cost > 2000;
+
+
+select trip.* , sum(salerep_expense.amount) as cost 
     from trip inner join salerep_expense
     on
         trip.trip_id = salerep_expense.trip_id
-    group by trip.trip_id) as temp 
-where temp.cost > 2000;
-
+    group by trip.trip_id
+    having sum(salerep_expense.amount) > 2000;
+    
 
 
 --------------------------------------------------------------
@@ -87,13 +98,18 @@ where temp.cost > 2000;
 
 -- 2.Print the ssn of salesperson who took trips to chennai more than once
 --------------------------------------------------------------
-select temp2.ssn from
-    (select temp.ssn , count(temp.ssn) as to_chennai_trip_cnt
-    from (
-        select trip.ssn from trip  where trip.to_city = 'Chennai'
-        ) as temp
-    group by temp.ssn) as temp2
-where temp2.to_chennai_trip_cnt > 1;
+-- select temp2.ssn from
+--     (select temp.ssn , count(temp.ssn) as to_chennai_trip_cnt
+--     from (
+--         select trip.ssn from trip  where trip.to_city = 'Chennai'
+--         ) as temp
+--     group by temp.ssn) as temp2
+-- where temp2.to_chennai_trip_cnt > 1;
+
+select temp.ssn from (
+    select trip.ssn from trip where trip.to_city='Chennai'
+) as temp group by temp.ssn having count(temp.ssn) > 1;
+
 
 --------------------------------------------------------------
 -- 3.3
@@ -103,7 +119,7 @@ where temp2.to_chennai_trip_cnt > 1;
 --------------------------------------------------------------
 select sum(tmp2.amount) from (select * from (
     select trip_id from trip 
-    where trip.ssn = 1) as tmp inner join salerep_expense
+    where trip.ssn = 1000) as tmp inner join salerep_expense
     on tmp.trip_id = salerep_expense.trip_id) as tmp2;
 
 --------------------------------------------------------------

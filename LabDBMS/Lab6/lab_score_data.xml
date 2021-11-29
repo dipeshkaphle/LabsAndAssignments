@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<score_data>
+    <student student_id="A001">
+        <xml_class>60</xml_class>
+        <data_structure>70</data_structure>
+        <algorithm>85</algorithm>
+        <network>90</network>
+    </student>
+    <student student_id="A002">
+        <xml_class>66</xml_class>
+        <data_structure>78</data_structure>
+        <algorithm>62</algorithm>
+        <network>88</network>
+    </student> 
+    <student student_id="A003">
+        <xml_class>89</xml_class>
+        <data_structure>77</data_structure>
+        <algorithm>80</algorithm>
+        <network>50</network>
+    </student>
+</score_data >

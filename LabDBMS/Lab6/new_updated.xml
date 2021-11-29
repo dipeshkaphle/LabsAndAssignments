@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<score_data>
+    <student student_id="A001">
+        <xml_class gpa="2.3">65</xml_class>
+        <data_structure gpa="3">75</data_structure>
+        <algorithm gpa="4.5">90</algorithm>
+        <network gpa="4.5">95</network>
+		<average>3.575</average>
+	</student>
+    <student student_id="A002">
+        <xml_class gpa="2.7">71</xml_class>
+        <data_structure gpa="3.7">83</data_structure>
+        <algorithm gpa="2.5">67</algorithm>
+        <network gpa="4.5">93</network>
+		<average>3.35</average>
+	</student> 
+    <student student_id="A003">
+        <xml_class gpa="4.5">94</xml_class>
+        <data_structure gpa="3.7">82</data_structure>
+        <algorithm gpa="4">85</algorithm>
+        <network gpa="1">55</network>
+		<average>3.3</average>
+	</student>
+</score_data>

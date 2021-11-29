@@ -15,10 +15,10 @@ const int BUF_SIZE = 512;
 
 #define HANDLE_SEND_RECV_ERRORS(st)                                            \
   if ((st) == -1) {                                                            \
-    printf("Error occured in send or recv\n");                                 \
+    perror("Error in send()/recv()");                                          \
     return 254;                                                                \
   } else if ((st) == 0) {                                                      \
-    printf("Connection is closed because send/recv returned 0\nError!!\n");    \
+    perror("Connection is closed because send/recv returned 0");               \
     return 255;                                                                \
   }
 
@@ -100,7 +100,7 @@ int main(int argc, char **argv) {
   // I only want one character so the buffer size is 1 here
   status = recv(conn1, buf, 1, 0);
   HANDLE_SEND_RECV_ERRORS(status);
-  buf[1] = '\n';
+  buf[1] = '\0';
   printf("Received : %s\n", buf);
   close(conn1);
 

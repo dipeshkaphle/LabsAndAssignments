@@ -1,0 +1,23 @@
+# TO RUN server1.py and client1.py
+  - Run 'python3 server1.py' in terminal
+  - Run 'python3 client1.py' in another terminal
+  - Now we can just type in strings in the running client1.py and 
+  	it'll be sent and the server1.py will send the encoded string to cleint1.py
+
+# TO RUN server2.py and client2.py
+  - If your system doesnt have eth1 interface, run the script by
+  	running the command 'bash make_eth1_interface', else we can skip
+	this step.
+  - Run 'python3 server2.py' in terminal
+  - Run 'python3 client2.py' in another terminal
+  - Now we can just type in strings in the running client2.py and 
+  	it'll be sent and the server2.py will send the encoded string to cleint1.py
+
+
+# To run in multi-threaded mode,
+  - For server1.py : Run 'python3 server1.py --multi-threaded'
+  - For server2.py : Run 'python3 server2.py --multi-threaded'
+
+# To override the default IP address used by client1.py and cleint2.py
+  - For client1.py : Run 'python3 client1.py --use-ip-addr <ip_addr>'
+  - For client2.py : Run 'python3 client2.py --use-ip-addr <ip_addr>'

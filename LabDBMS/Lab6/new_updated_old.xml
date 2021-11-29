@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<score_data>
+    
+    
+    <student student_id="A001">
+        
+        
+        <xml_class gpa="(60, 2)" gp="2.3">65</xml_class>
+        
+        
+        <data_structure gpa="(70, 2.7)" gp="3.0">75</data_structure>
+        
+        
+        <algorithm gpa="(85, 4)" gp="4.5">90</algorithm>
+        
+        
+        <network gpa="(90, 4.5)" gp="4.5">95</network>
+        
+		
+        <average>3.575</average>
+        
+	
+    </student>
+    
+    
+    <student student_id="A002">
+        
+        
+        <xml_class gpa="(66, 2.3)" gp="2.7">71</xml_class>
+        
+        
+        <data_structure gpa="(78, 3.3)" gp="3.7">83</data_structure>
+        
+        
+        <algorithm gpa="(62, 2)" gp="2.5">67</algorithm>
+        
+        
+        <network gpa="(88, 4)" gp="4.5">93</network>
+        
+		
+        <average>3.35</average>
+        
+	
+    </student>
+     
+    
+    <student student_id="A003">
+        
+        
+        <xml_class gpa="(89, 4)" gp="4.5">94</xml_class>
+        
+        
+        <data_structure gpa="(77, 3.3)" gp="3.7">82</data_structure>
+        
+        
+        <algorithm gpa="(80, 3.7)" gp="4.0">85</algorithm>
+        
+        
+        <network gpa="(50, 1)" gp="1.0">55</network>
+        
+		
+        <average>3.3</average>
+        
+	
+    </student>
+    
+
+</score_data>
