@@ -22,13 +22,13 @@ template <> struct std::hash<pair<network_node, seq_number>> {
 
 namespace sncf {
 
-// Global variable to keep track of all the seen sequences of all the routers
+/// Global variable to keep track of all the seen sequences of all the routers
 std::unordered_map<Router *, unordered_set<pair<network_node, seq_number>>>
     seen_sequences;
 
 inline void handle_hosts(unordered_map<network_node, vector<PacketAndSrc>>
                              &router_queue_for_next_time_unit) {
-  /*
+  /**
    * What does a host do in SNCF ?
    *
    * So we know for sure whatever data is in the network_queue, it is supposed
@@ -85,7 +85,7 @@ inline void handle_hosts(unordered_map<network_node, vector<PacketAndSrc>>
 inline void handle_routers(unordered_map<network_node, vector<PacketAndSrc>>
                                &router_queue_for_next_time_unit) {
 
-  /*
+  /**
    * What does a Router do in SNCF ?
    *
    * - It will check if the packet that it has in its queue is supposed to be

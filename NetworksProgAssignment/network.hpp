@@ -14,7 +14,7 @@ struct PacketAndSrc;
 
 struct network_node {
   network::IP ip;
-  /*
+  /**
    * This is a network queue
    *
    * The packets that the particular network_node(be that router or host) has to
@@ -27,18 +27,18 @@ struct network_node {
    */
   queue<PacketAndSrc> network_queue;
 
-  /*
+  /**
    * Copy constructor for network_node class
    */
   network_node(network::IP ip) : ip(ip) {}
 
-  /*
+  /**
    * Equal to comparison operator for network_node, it basically compares the
    * IPs of two network_node objects
    */
   bool operator==(const network_node &other) const { return ip == other.ip; }
 
-  /*
+  /**
    * This will use subnet mask and IP to determine whether two network_node are
    * in the same network
    *
@@ -53,7 +53,7 @@ struct network_node {
   }
 };
 
-/*
+/**
  * making network node hashable, becaue I'm storing network_node in
  * unordered_map which requires its key be hashable
  */
@@ -63,7 +63,7 @@ template <> struct std::hash<network_node> {
   }
 };
 
-/*
+/**
  * A struct to store Packet and the intermediate source it came from.
  * This is what Im using in the network queue of any network_node(Host or
  * Router)
@@ -75,7 +75,7 @@ struct PacketAndSrc {
       : packet(pkt), source(src) {}
 };
 
-/*
+/**
  * Forward declaration of Router, because Im using the class in Host but its not
  * been defined yet, so I need to do this.
  */
@@ -84,12 +84,12 @@ struct Router;
 // HOST Class
 struct Host : network_node {
 
-  /*
+  /**
    * Stores all the pointers to router the host is connected to
    */
   unordered_set<Router *> hosts_routers; // stores router ids
 
-  /*
+  /**
    * This is something I'm using to keep track of all the host that have ever
    * been instantiated. This will ensure that I have no two Hosts with same IP
    * as well
@@ -97,22 +97,20 @@ struct Host : network_node {
   static unordered_map<network_node, Host *> hosts;
 
   Host(network::IP ip) : network_node(ip) {
-    /*
+    /**
      * I will check if there's already a host with same IP
      * If yes, I will throw error crashing the program
+     *Else, I will add the entry of this Host along with its address
      */
     if (hosts.find(static_cast<network_node>(*this)) != hosts.end()) {
       throw std::runtime_error("A Host with same IP already exists.\n"
                                "There cant be two hosts with same IP\n"
                                "It will cause issues\n");
     }
-    /*
-     *Else, I will add the entry of this Host along with its address
-     */
     hosts[static_cast<network_node>(*this)] = this;
   }
 
-  /*
+  /**
    * Move constructor of Host
    *
    * This is especially useful  when we are using Host with vector i.e
@@ -129,12 +127,12 @@ struct Host : network_node {
     hosts[static_cast<network_node>(*this)] = this;
   }
 
-  /*
+  /**
    * Gets the address of the Host
    */
   Host *get() { return this; }
 
-  /*
+  /**
    * Takes in raw message,destination and ttl
    *
    * - Converts the message to application layer data
@@ -189,21 +187,21 @@ struct Host : network_node {
 };
 
 struct Router : network_node {
-  /*
+  /**
    * This is something I'm using to keep track of all the Routers that have ever
    * been instantiated. This will ensure that I have no two Routers with same IP
    * as well
    */
   static unordered_map<network_node, Router *> routers;
 
-  // All the hosts that the router is connected to
+  /// All the hosts that the router is connected to
   std::unordered_set<Host *> hosts;
-  // All the routers that this router has direct connection to
+  /// All the routers that this router has direct connection to
   std::unordered_set<Router *> connected_routers;
 
   Router(network::IP ip) : network_node(ip) {
-    // This is similar to what I am doing in Host's constructor
-    // To ensure no duplicacy
+    /// This is similar to what I am doing in Host's constructor
+    /// to ensure no duplicacy
     if (routers.find(static_cast<network_node>(*this)) != routers.end()) {
       throw std::runtime_error("A Router with same IP already exists.\n"
                                "There cant be two routers with same IP\n"
@@ -235,7 +233,7 @@ struct Router : network_node {
 
 using network::Packet;
 
-// Loggers for simulation
+/// Loggers for simulation
 inline void RECEIVE(Router &src, Host &dest, Packet &p) {
   cout << "!!!! REACHED DESTINATION:  H(" << dest.ip.to_cidr()
        << ") received destined Pkt( seq_no: " << p.segment.seq_no
@@ -255,12 +253,11 @@ inline void LOG(Host &src, Router &dest, Packet &p) {
        << " from H(" << src.ip.to_cidr() << ")\n";
 }
 
-// DISCARD Packet, used in sncf to log discarding a packet when we've already
-// seen the packet before
+/// DISCARD Packet, used in sncf to log discarding a packet when we've already
+/// seen the packet before
 inline void DISCARD(Router &r1, Router &r2, Packet &p) {
 
   cout << "R(" << r1.ip.to_cidr()
        << ") discards Pkt( seq_no: " << p.segment.seq_no << ") coming from R("
        << r2.ip.to_cidr() << ")\n";
-  //
 }

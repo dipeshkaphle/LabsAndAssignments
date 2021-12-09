@@ -24,10 +24,9 @@ struct Segment {
 
   string get_data_as_string() { return string(data.begin(), data.end()); }
 
-  /*
-   * Takes in application layer data
-   * Splits it into multiple segments
-   * The last segment will have FIN flag set, to indicate its the last one
+  /**
+   * - Takes in application layer data
+   * - Splits it into multiple segments
    */
   static vector<Segment> make_segments(const application::data &data) {
     auto l = data.raw_data.begin();

@@ -7,7 +7,7 @@ namespace ttl_based {
 inline void handle_hosts(unordered_map<network_node, vector<PacketAndSrc>>
                              &router_queue_for_next_time_unit) {
 
-  /*
+  /**
    * What does a host do in simple flooding(having a fixed ttl)?
    *
    * For a packet to be sent by the host, I'm already checking if its
@@ -60,7 +60,7 @@ inline void handle_hosts(unordered_map<network_node, vector<PacketAndSrc>>
 inline void handle_routers(unordered_map<network_node, vector<PacketAndSrc>>
                                &router_queue_for_next_time_unit) {
 
-  /*
+  /**
    * What does a router do in simple flooding(having a fixed ttl)?
    *
    * - It will check if the packet that it has in its queue is supposed to be
