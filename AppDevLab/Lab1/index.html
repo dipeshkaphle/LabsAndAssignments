@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Login Form</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="main">
+      <img src="pic.jpeg" alt="No image found">
+        <form id="loginForm">
+          <div class="inputDiv">
+            <label for="fname">First name:</label></br>
+            <input
+              type="text"
+              id="fname"
+              name="fname"
+              placeholder="John"
+              required
+            />
+          </div>
+
+          <div class="inputDiv">
+            <label for="lname">Last name</label>
+            <br>
+            <input
+              type="text"
+              id="lname"
+              name="lname"
+              placeholder="Doe"
+              required
+            />
+          </div>
+
+          <div class="inputDiv">
+            <label for="gender"> Gender: </label>
+            <input type="radio" id="male" name="gender" value="Male" />
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="Female" />
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="Other" />
+            <label for="other">Other</label>
+          </div>
+
+          <div class="inputDiv">
+            <label for="phone">Phone Number:</label>
+            <br>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="+91-xxxxxxxxxx"
+              pattern="(\+[0-9]{2}-)?[0-9]{10}"
+              title="Phone number should be (\+[0-9]{2}-)?[0-9]{10}"
+              required
+            />
+          </div>
+
+          <div class="inputDiv">
+            <!-- email input -->
+            <label for="email">Email: </label>
+            <br>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="abc.def111@gmail.com"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              title="Email should follow [a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              required
+            />
+          </div>
+
+          <div class="inputDiv">
+            <label for="address">Address:</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              placeholder="House No xyz"
+              required
+            />
+          </div>
+
+          <div class="inputDiv">
+            <!-- Make an input for city -->
+            <label for="city">City:</label>
+            <br>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              placeholder="Chennai"
+              required
+            />
+          </div>
+
+          <div class="inputDiv">
+            <label for="state">State:</label>
+            <br>
+            <input
+              type="text"
+              id="state"
+              name="state"
+              placeholder="Tamil Nadu"
+              required
+            />
+          </div>
+
+          <div class="inputDiv">
+            <label for="country">Country:</label>
+            <br>
+            <input
+              type="text"
+              id="country"
+              name="country"
+              placeholder="India"
+              required
+            />
+          </div>
+
+          <div class="inputDiv">
+            <!-- Make an input for password and confirm password -->
+            <label for="password">Password:</label>
+            <br>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="pass"
+              required
+            />
+          </div>
+
+          <div class="inputDiv">
+            <!-- Confirm password -->
+            <label for="confirm_password">Confirm Password:</label>
+            <br>
+            <input
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              placeholder="pass"
+              required
+            />
+          </div>
+
+          <!-- Add a submit button -->
+          <div class="btn">
+            <input type="reset" value="Clear" />
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <small id="error"></small>
+
+    <script src="script.js"></script>
+  </body>
+</html>

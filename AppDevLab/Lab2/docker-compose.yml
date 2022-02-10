@@ -1,0 +1,11 @@
+
+version: '3'
+services:
+  tomcat_server: 
+    build: .
+    ports:
+      - "8080:8080" # local:container
+    volumes:
+      - ./target:/usr/local/tomcat/webapps
+    restart: always
+    
