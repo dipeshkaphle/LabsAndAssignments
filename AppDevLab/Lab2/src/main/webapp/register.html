@@ -1,0 +1,31 @@
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Registration</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="form">
+        <div class="heading">
+          <h1>Register</h1>
+        </div>
+        <form action="./register" method="post">
+          <label class="input-label"> Username </label>
+          <input type="text" name="username" class="input-field"/>
+
+          <label class="input-label"> Password </label>
+          <input type="password" name="password" class="input-field" />
+
+          <label class="input-label"> Confirm Password </label>
+          <input type="password" name="confirm-password" class="input-field" />
+
+          <div class="btn-container">
+            <a href="./login" class="btn">Sign In</a>
+            <button type="submit" class="btn submit">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

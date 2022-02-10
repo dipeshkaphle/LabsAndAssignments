@@ -16,6 +16,7 @@ int main(int argc, char **argv) {
   // std::cout << exps.size();
   for (auto &exp : exps) {
     std::cout << exp->s_exp() << '\n';
+    std::cout << exp->eval_to_string() << '\n';
   }
   return 0;
 }
