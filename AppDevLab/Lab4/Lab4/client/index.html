@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 4</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="d-flex justify-content-center">
+              <h2>Register for events</h2>
+            </div>
+            <form id="my-form">
+              <label> Name </label>
+              <input type="text" name="name" class="form-control" />
+
+              <label> Roll Number </label>
+              <input type="text" name="roll_no" class="form-control" />
+
+              <label> Course </label>
+              <input type="text" name="course" class="form-control" />
+
+              <label> Events </label>
+              <div>
+                <div>
+                  <input type="checkbox" name="Blind Coding" />
+                  <label class="event-label">Blind Coding</label>
+                </div>
+                <div>
+                  <input type="checkbox" name="Overnight Coding" />
+                  <label class="event-label">Overnight Coding</label>
+                </div>
+                <div>
+                  <input type="checkbox" name="Games" />
+                  <label class="event-label">Games</label>
+                </div>
+                <div>
+                  <input type="checkbox" name="Online Treasure Hunt" />
+                  <label class="event-label">Onine Treasure Hunt</label>
+                </div>
+                <div>
+                  <input type="checkbox" name="Puzzles" />
+                  <label class="event-label">Puzzles</label>
+                </div>
+              </div>
+              <label> Fees (100 per event )</label>
+              <input
+                type="text"
+                name="fees"
+                value="0"
+                disabled
+                class="input-field"
+              />
+
+              <div class="btn-container">
+                <div class="btn btn-primary" id="submit">Submit</div>
+              </div>
+            </form>
+          </div>
+          <div class="col">
+            <div class="position-relative">
+              <div class="d-flex justify-content-center">
+                <h2>Summary</h2>
+              </div>
+
+              <div
+                class="position-absolute top-50 start-50 translate-middle"
+              ></div>
+              <div
+                class="position-absolute top-50 start-50 translate-middle"
+              ></div>
+            </div>
+            <div id="summary-table"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="current-id" class="hidden"></div>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
