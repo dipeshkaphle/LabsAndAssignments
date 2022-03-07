@@ -7,5 +7,5 @@ services:
       - "8080:8080" # local:container
     volumes:
       - ./target:/usr/local/tomcat/webapps
-    restart: always
+    restart: "no"
     

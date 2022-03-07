@@ -1,0 +1,33 @@
+
+version: '3'
+services:
+  tomcat_server: 
+    build: .
+    ports:
+      - "8080:8080" # local:container
+    volumes:
+      - ./target:/usr/local/tomcat/webapps
+    restart: "no"
+    depends_on:
+      - db
+  db:
+      image: mysql
+      container_name: mysqldb
+      command: --default-authentication-plugin=mysql_native_password
+      restart: unless-stopped
+      environment:
+          MYSQL_DATABASE: db
+          MYSQL_ROOT_PASSWORD: password
+      ports: 
+          - "3306:3306"
+      volumes: 
+          - ./docker-data-mysql:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: pma
+    restart: "no"
+    ports:
+        - 9000:80
+    depends_on: 
+        - db
+
