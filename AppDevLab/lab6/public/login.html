@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="login.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div
+      class="container d-flex align-content-center justify-content-center"
+      id="header"
+    >
+      <h2>Login</h2>
+    </div>
+    <div class="container ">
+      <!-- Login form with bootstrap styling -->
+      <form  id="loginForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="logindata form-control"
+            id="name"
+            name="name"
+            placeholder="Enter username"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="logindata form-control"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+            required
+          />
+        </div>
+      </form>
+        <button onclick="login()" class="btn btn-primary">Login</button>
+        <button onclick="changeToRegister()" class="btn btn-danger">
+          Register
+        </button>
+    </div>
+    <!-- Form with userId, Roll No, Name, Father Name, Branch, Year, Email, Address -->
+    <div class="container ">
+      <form  id="registerForm">
+        <div class="form-group">
+          <label for="id">User Id</label>
+          <input
+            type="text"
+            class="form-control"
+            id="regdata id"
+            name="id"
+            placeholder="Enter userId"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="rollno">Roll No</label>
+          <input
+            type="text"
+            class="regdata form-control"
+            id="rollno"
+            name="rollno"
+            placeholder="Enter rollNo"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="regdata form-control"
+            id="name"
+            name="name"
+            placeholder="Enter name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="regdata form-control"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+            required
+          />
+        <div class="form-group">
+          <label for="fathername">Father Name</label>
+          <input
+            type="text"
+            class="regdata form-control"
+            id="fathername"
+            name="fathername"
+            placeholder="Enter fathername"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="branch">Branch</label>
+          <input
+            type="text"
+            class="regdata form-control"
+            id="branch"
+            name="branch"
+            placeholder="Enter branch"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="year">Year</label>
+          <input
+            type="text"
+            class="regdata form-control"
+            id="year"
+            name="year"
+            placeholder="Enter year"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            class="regdata form-control"
+            id="email"
+            name="email"
+            placeholder="Enter email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input
+            type="text"
+            class="regdata form-control"
+            id="address"
+            name="address"
+            placeholder="Enter address"
+            required
+          />
+        </div>
+      </form>
+      <button onclick="reg()"  class="btn btn-primary">Submit</button>
+      <button onclick="changeToLogin()" class="btn btn-danger">Login</button>
+    </div>
+  </body>
+
+  <script src="login.js"></script>
+</html>
