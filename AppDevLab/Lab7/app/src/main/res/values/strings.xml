@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Lab7</string>
+    <string-array name="menu_types">
+        <item>Veg</item>
+        <item>Non-Veg</item>
+    </string-array>
+    <string-array name="drinks">
+        <item>Pink Lady</item>
+        <item>Soda Cola</item>
+        <item>Mojito</item>
+        <item>Blue Ocean</item>
+    </string-array>
+    <string-array name="starters">
+        <item>Chilli Paneer</item>
+        <item>Paneer 65</item>
+        <item>Dry Manchurian</item>
+        <item>Hara Bhara Kebab</item>
+    </string-array>
+    <string-array name="main_dishes">
+        <item>Paneer Tadka</item>
+        <item>Paneer Handi</item>
+        <item>Paneer Kofta</item>
+        <item>Paneer Tikka Masala</item>
+    </string-array>
+    <string-array name="desserts">
+        <item>Brownie With Ice-cream</item>
+        <item>Gulab Jamun</item>
+        <item>Gajar ka Halwa</item>
+        <item>Fruit Salad</item>
+    </string-array>
+
+
+</resources>

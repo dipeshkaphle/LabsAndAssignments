@@ -2,6 +2,7 @@
 BusOut myleds(LED1, LED2, LED3, LED4);
 InterruptIn button(p5);
 void hex_counter() {
+  printf("button Raised");
   while (1) {
     for (int i = 0; i < 16; i++) {
       myleds = i;
@@ -11,6 +12,7 @@ void hex_counter() {
   }
 }
 void dec_counter() {
+  printf("button Fallen");
   while (1) {
     for (int i = 0; i < 10; i++) {
       myleds = i;

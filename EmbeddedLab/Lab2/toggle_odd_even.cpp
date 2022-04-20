@@ -13,6 +13,7 @@ void counter() {
   val %= 16;
 }
 void change_type() {
+  printf("changed type using button \n");
   if (odd) {
     odd = 0;
     val = 0;
@@ -24,6 +25,7 @@ void change_type() {
   }
 }
 void reset() {
+  printf("reseting the values after timeout \n");
   odd = 0;
   val = 0;
   cntr_type = "Even";
@@ -31,5 +33,6 @@ void reset() {
 int main() {
   tk.attach(&counter, 1.0);
   btn.rise(&change_type);
+  btn.fall(&change_type);
   to.attach(&reset, 10.0);
 }

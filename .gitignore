@@ -4,4 +4,8 @@
 *.tr
 *.txt
 *.nam
-
+AppDevLab/Lab5/backend/data
+AppDevLab/Lab5/frontend/frontend/node_modules
+AppDevLab/Lab5/frontend/frontend/package-lock.json
+AppDevLab/Lab5/backend/lab5
+**/__pycache__/
