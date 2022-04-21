@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Lab9</string>
+    <string name="user_name">Enter UserName</string>
+    <string name="phone_no">Enter PhoneNo</string>
+    <string name="password">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="reg_password">Enter Password</string>
+    <string name="reenter_password">ReType Password</string>
+    <string name="register_user">Register User</string>
+    <string name="otp">Enter OTP</string>
+    <string name="submit_otp">Submit OTP</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="Transfer">Transfer</string>
+    <string name="add_benificiary">Add Benificiary</string>
+    <string name="add_funds">Add Funds</string>
+    <string name="deposit">Deposit</string>
+    <string name="deposit_amount">Enter Deposit Amount</string>
+    <string name="fund_transfer_amt">Fund Transfer Amount</string>
+    <string name="fund_transfer_to">Receiver PhoneNo</string>
+    <string name="benificiary_phone">Benificiary\'s PhoneNo</string>
+</resources>
