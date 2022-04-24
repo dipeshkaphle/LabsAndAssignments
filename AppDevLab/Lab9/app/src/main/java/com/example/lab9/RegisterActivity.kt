@@ -60,6 +60,17 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
     fun sendSMS(phone: String, otpMsg: String){
+        // ask for permission if not there
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            if (checkSelfPermission(android.Manifest.permission.SEND_SMS) ==
+                android.content.pm.PackageManager.PERMISSION_DENIED
+            ) {
+                requestPermissions(
+                    arrayOf(android.Manifest.permission.SEND_SMS),
+                    1
+                )
+            }
+        }
         val sentPI: PendingIntent =
             PendingIntent.getBroadcast(this, 0, Intent("SMS_SENT"), 0)
         SmsManager.getDefault().sendTextMessage(phone, null, otpMsg, sentPI, null)

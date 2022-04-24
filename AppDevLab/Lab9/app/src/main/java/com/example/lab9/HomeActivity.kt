@@ -27,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
 
         transferBtn.setOnClickListener {
             val intent = Intent(this, TransferFundsActivity::class.java)
-            intent.putExtra("phoneNo", user.phone)
+            intent.putExtra("user", user)
             startActivity(intent)
         }
         addBenificiaryBtn.setOnClickListener {

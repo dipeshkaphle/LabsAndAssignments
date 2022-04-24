@@ -33,6 +33,17 @@ class OtpActivity : AppCompatActivity() {
                 val otp = OtpDBHandler().getOtp(phoneNo)
                 otp?.let { otp ->
 
+                    // ask for permission if not there
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                        if (checkSelfPermission(android.Manifest.permission.SEND_SMS) ==
+                            android.content.pm.PackageManager.PERMISSION_DENIED
+                        ) {
+                            requestPermissions(
+                                arrayOf(android.Manifest.permission.SEND_SMS),
+                                1
+                            )
+                        }
+                    }
                     val sentPI: PendingIntent =
                         PendingIntent.getBroadcast(this@OtpActivity, 0, Intent("SMS_SENT"), 0)
                     @Suppress("DEPRECATION")
