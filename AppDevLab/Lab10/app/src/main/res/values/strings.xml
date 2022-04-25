@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Lab10</string>
     <string name="start_reading">Start reading</string>
+    <string name="search_in_map">Search in Map</string>
 </resources>

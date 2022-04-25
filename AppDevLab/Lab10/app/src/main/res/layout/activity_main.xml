@@ -14,8 +14,8 @@
         android:text=""
         android:textColor="@color/purple_500"
         app:layout_constraintTop_toBottomOf="@+id/start_btn"
-        tools:layout_editor_absoluteX="0dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/start_btn"
@@ -23,8 +23,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:onClick="btnOnClick"
+        android:clickable="true"
         android:text="@string/start_reading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true" />
+
+    <Button
+        android:id="@+id/map_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="openInMapClick"
+        android:text="@string/search_in_map"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:focusable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>
