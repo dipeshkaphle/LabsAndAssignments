@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lab11</string>
+    <string name="call">Call</string>
+    <string name="phone_number">Phone Number</string>
+</resources>
