@@ -9,11 +9,11 @@ import kotlinx.coroutines.runBlocking
 
 class UserDBHandler{
 
-    var mDatabase: DatabaseReference = Firebase.database.getReference("users")
+    private var mDatabase: DatabaseReference = Firebase.database.getReference("users")
 
-    fun addUser(username: String, phone: String, password: String, balance: Int,  isVerified: Int)
-    = runBlocking{
-        val user = User(username, phone, password,balance, isVerified)
+    fun addUser(username: String, phone: String, password: String, balance: Int,  isVerified: Int,
+                benificiaryList: List<String> = emptyList()) = runBlocking{
+        val user = User(username, phone, password,balance, isVerified, benificiaryList)
         Tasks.await(mDatabase.child(phone).setValue(user))
     }
 
@@ -62,13 +62,5 @@ class UserDBHandler{
         balance = Tasks.await(task).getValue<Int>()!!
         //update balance
         Tasks.await(mDatabase.child(phone).child("balance").setValue(balance + amount))
-//
-//
-//
-//        mDatabase.child(phone).child("balance").get().addOnSuccessListener {
-//            balance = it.value as Int
-//            //update balance
-//            mDatabase.child(phone).child("balance").setValue(balance + amount)
-//        }
     }
 }

@@ -30,9 +30,10 @@ class TransferFundsActivity : AppCompatActivity() {
         val phoneNo = usr?.phone
 
         // set spinner values to the user.beneficiaryList
-        usr?.benificiaryList?.let {
+        usr?.benificiaryList.let {
              val adapter = ArrayAdapter(this@TransferFundsActivity,
-                 android.R.layout.simple_spinner_item, listOf("Select Benificiary")+ it)
+                 android.R.layout.simple_spinner_item, listOf("Select Benificiary")+ it
+             )
              adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
              toAccNum.adapter = adapter
          }
