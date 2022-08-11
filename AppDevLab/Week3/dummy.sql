@@ -1,13 +1,3 @@
-
--- Create table accounts with field username ,password and rollno
-
-create table accounts (
-    rollno int PRIMARY KEY,
-    username varchar(255) not null,
-    password varchar(255) not null,
-    score int
-)
-
 Drop table if exists Student;
 CREATE Table IF NOT EXISTS Student (
     rollno int NOT NULL AUTO_INCREMENT PRIMARY KEY,

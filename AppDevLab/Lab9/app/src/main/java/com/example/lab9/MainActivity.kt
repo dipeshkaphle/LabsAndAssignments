@@ -32,6 +32,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            if (checkSelfPermission(android.Manifest.permission.SEND_SMS) ==
+                android.content.pm.PackageManager.PERMISSION_DENIED
+            ) {
+                requestPermissions(
+                    arrayOf(android.Manifest.permission.SEND_SMS),
+                    1
+                )
+            }
+        }
+
+
         phoneNo = findViewById(R.id.login_phone_no)
         password = findViewById(R.id.password)
         login = findViewById(R.id.login)

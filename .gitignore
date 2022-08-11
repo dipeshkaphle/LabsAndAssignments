@@ -1,6 +1,6 @@
 *.png
 *.txt
-*.md
+# *.md
 *.tr
 *.txt
 *.nam

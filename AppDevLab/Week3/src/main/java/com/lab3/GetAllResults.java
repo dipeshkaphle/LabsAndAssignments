@@ -41,7 +41,7 @@ public class GetAllResults extends HttpServlet {
                 pw.println("</thead>");
                 pw.println("<tbody>");
 
-                String sql = "select * from accounts;";
+                String sql = "select * from Student;";
                 ResultSet rs = stmt.executeQuery(sql);
                 while (rs.next()) {
                     String username = rs.getString("username");
