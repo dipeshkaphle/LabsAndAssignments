@@ -6,6 +6,7 @@ import Home from "./Home";
 import Producer from "./Producer";
 import AddProduct from "./AddProduct";
 import MyCart from "./MyCart";
+import Buy from "./Buy";
 
 export default function AllRoutes(): JSX.Element {
   return (
@@ -17,6 +18,7 @@ export default function AllRoutes(): JSX.Element {
       <Route path="/producer" element={<Producer />} />
       <Route path="/add_product" element={<AddProduct />} />
       <Route path="/cart" element={<MyCart />} />
+      <Route path="/buy_cart" element={<Buy />} />
     </Routes>
   );
 }

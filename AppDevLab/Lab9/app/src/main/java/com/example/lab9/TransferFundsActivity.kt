@@ -28,15 +28,15 @@ class TransferFundsActivity : AppCompatActivity() {
 
         val usr: User? = intent.getSerializableExtra("user") as User?
         val phoneNo = usr?.phone
+        var benificiary = listOf("Select Benificiary")
+        benificiary.plus(usr?.benificiaryList ?: emptyList()).also { benificiary = it }
 
         // set spinner values to the user.beneficiaryList
-        usr?.benificiaryList.let {
-             val adapter = ArrayAdapter(this@TransferFundsActivity,
-                 android.R.layout.simple_spinner_item, listOf("Select Benificiary")+ it
-             )
-             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-             toAccNum.adapter = adapter
-         }
+         val adapter = ArrayAdapter(this@TransferFundsActivity,
+             android.R.layout.simple_spinner_item, benificiary
+         )
+         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+         toAccNum.adapter = adapter
 
 
         transferBtn.setOnClickListener {

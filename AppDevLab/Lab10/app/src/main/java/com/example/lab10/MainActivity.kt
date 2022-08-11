@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         textToSpeech = TextToSpeech(this@MainActivity) {
             if (it == TextToSpeech.SUCCESS) {
-                val result = textToSpeech.setLanguage(Locale.ENGLISH)
+                val result = textToSpeech.setLanguage(Locale.US)
                 if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                     Toast.makeText(this@MainActivity, "Language not supported", Toast.LENGTH_SHORT)
                         .show()
@@ -67,12 +67,13 @@ class MainActivity : AppCompatActivity() {
             override fun receiveDetections(detections: Detector.Detections<TextBlock>) {
                 val items = detections.detectedItems
                 val handler = Handler(Looper.getMainLooper())
-                handler.post {
+                handler.postDelayed( {
                     if (items.size() != 0) {
                         textRecognized = items.valueAt(0).value
                         this@MainActivity.onResultObtained()
                     }
-               }
+               },1000)
+
             }
         })
     }

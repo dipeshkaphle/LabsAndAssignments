@@ -56,6 +56,9 @@ export default function MyCart(): JSX.Element {
   const handleHomeClick = (): void => {
     navigate("/home");
   };
+  const handleBuyClick = (): void => {
+    navigate("/buy_cart");
+  };
 
   const handleRemoval = (productId: string, price: number): void => {
     // send delete request to /api/my_cart/:id
@@ -141,6 +144,9 @@ export default function MyCart(): JSX.Element {
           </Button>
           <Button onClick={handleHomeClick} style={{ marginLeft: "10px" }}>
             Home
+          </Button>
+          <Button onClick={handleBuyClick} style={{ marginLeft: "10px" }}>
+            Buy Cart
           </Button>
         </Col>
       </Row>

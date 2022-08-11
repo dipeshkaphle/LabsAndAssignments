@@ -11,7 +11,7 @@ public class AccountDB {
         try {
             conn = DBConnection.initializeDatabase();
             System.out.println("Connected to the SQL server successfully.");
-            String selectQuery = "select * from accounts where username = ? and password = ? and rollno = ?;";
+            String selectQuery = "select * from Student where username = ? and password = ? and rollno = ?;";
             PreparedStatement pstmt = conn.prepareStatement(selectQuery);
             pstmt.setString(1, acc.getUser());
             pstmt.setString(2, acc.getPassword());
@@ -34,7 +34,7 @@ public class AccountDB {
         try {
             conn = DBConnection.initializeDatabase();
             System.out.println("Connected to the SQL server successfully.");
-            String addQuery = "insert into accounts (username, password) values ('" + acc.getUser() + "', '"
+            String addQuery = "insert into Student (username, password) values ('" + acc.getUser() + "', '"
                     + acc.getPassword() + "');";
             PreparedStatement pstmt = conn.prepareStatement(addQuery);
             pstmt.executeUpdate();
@@ -46,7 +46,7 @@ public class AccountDB {
     }
 
     public int updateScore(Account acc, int score) {
-        String updateQuery = "update accounts " + "set score = ? " + "where username = ?";
+        String updateQuery = "update Student " + "set score = ? " + "where username = ?";
         Connection conn;
         int affectedrows = 0;
 

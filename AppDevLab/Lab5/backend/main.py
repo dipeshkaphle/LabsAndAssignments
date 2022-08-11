@@ -208,6 +208,31 @@ async def add_to_cart(req: Dict[str,Any], tok: token.TokenData = Depends(verify_
         await cart_collection.insert_one(my_cart)
     return { "success": True,  "message": "Successfully added product to cart"}
 
+@app.get("/api/buy_cart")
+async def buy_cart(tok: token.TokenData = Depends(verify_jwt_token)):
+    my_cart = await cart_collection.find({"user": tok.username}).to_list(None)
+    if my_cart:
+        my_cart = my_cart[0]
+        new_prods_list = []
+        transaction_cost = 0
+        for prod in my_cart["products"]:
+            prod['_id'] = str(prod['_id'])
+            # remove if its in stock and update stock
+            prod_in_db = await product_collection.find_one(\
+                {"_id": utils.get_object_id(prod['_id'])})
+            if prod_in_db['stock_count']>0:
+                prod_in_db['stock_count'] -= 1
+                await product_collection.update_one({"_id": utils.get_object_id(prod['_id'])}, \
+                    {"$set": prod_in_db})
+                my_cart["total_price"] -= prod['price']
+                transaction_cost += prod['price']
+            else:
+                new_prods_list.append(prod)
+        
+        my_cart['products'] = new_prods_list
+        await cart_collection.update_one({"user": tok.username}, {"$set": my_cart})
+    return { "success": True,"transaction_cost": transaction_cost  , \
+        "message": "Successfully bought cart", "out_of_stock_cnt": len(new_prods_list) }
 
 
 @app.post("/api/login")
